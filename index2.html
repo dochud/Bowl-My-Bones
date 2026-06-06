@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#0a0a0a">
+<title>Bowl My Bones · 3 July 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #0a0a0a;
+    --off-black: #111;
+    --card: #161616;
+    --border: #2a2a2a;
+    --muted: #555;
+    --body: #aaa;
+    --white: #f0ede6;
+    --accent: #e8c547;
+    --accent-dim: rgba(232,197,71,0.12);
+    --red: #d94f3d;
+    --green: #3d9e6e;
+    --lara: #9b7fe8;
+    --jon: #5dbf95;
+    --gregg: #e8844a;
+    --safe: env(safe-area-inset-bottom, 0px);
+  }
+
+  html { background: var(--black); }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--black);
+    color: var(--white);
+    min-height: 100dvh;
+    max-width: 480px;
+    margin: 0 auto;
+    overflow-x: hidden;
+  }
+
+  .hero {
+    position: relative;
+    padding: 3rem 1.5rem 2rem;
+    overflow: hidden;
+    border-bottom: 1px solid var(--border);
+  }
+  .hero-noise {
+    position: absolute; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    opacity: 0.6; pointer-events: none;
+  }
+  .hero-stripe { position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--accent); }
+  .event-label {
+    font-size: 10px; font-weight: 500; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem;
+  }
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3.5rem, 16vw, 4.5rem);
+    line-height: 0.92; letter-spacing: 0.02em; color: var(--white); margin-bottom: 0.5rem;
+  }
+  .hero h1 span { color: var(--accent); }
+  .hero-meta { display: flex; gap: 0.6rem; margin-top: 1.25rem; flex-wrap: wrap; }
+  .hero-pill {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 11px; font-weight: 500; padding: 5px 10px;
+    border-radius: 20px; border: 1px solid var(--border); color: var(--body);
+  }
+  .hero-pill.gates { border-color: var(--accent); color: var(--accent); background: var(--accent-dim); }
+  .hero-pill svg { width: 12px; height: 12px; flex-shrink: 0; }
+
+  .countdown-bar {
+    padding: 1.25rem 1.5rem; border-bottom: 1px solid var(--border); background: var(--off-black);
+  }
+  .countdown-label { font-size: 10px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.6rem; }
+  .countdown-units { display: flex; gap: 1rem; align-items: baseline; }
+  .countdown-unit { text-align: center; }
+  .countdown-num { font-family: 'Bebas Neue', sans-serif; font-size: 2.8rem; line-height: 1; color: var(--white); }
+  .countdown-unit-label { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-top: 2px; }
+  .countdown-sep { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; color: var(--border); line-height: 1; padding-bottom: 4px; }
+
+  .section { padding: 1.5rem 1.5rem 0; }
+  .section-heading { font-size: 10px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem; }
+
+  .travel-cards { display: flex; flex-direction: column; gap: 10px; margin-bottom: 1.5rem; }
+  .travel-card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+    padding: 1rem 1.1rem; display: flex; align-items: flex-start; gap: 12px;
+  }
+  .travel-card .avatar {
+    width: 36px; height: 36px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 500; flex-shrink: 0;
+  }
+  .av-lara  { background: rgba(155,127,232,0.15); color: var(--lara); }
+  .av-jon   { background: rgba(93,191,149,0.15); color: var(--jon); }
+  .av-gregg { background: rgba(232,132,74,0.15); color: var(--gregg); }
+  .travel-card .info { flex: 1; min-width: 0; }
+  .travel-card .name { font-size: 14px; font-weight: 500; color: var(--white); }
+  .travel-card .route { font-size: 12px; color: var(--body); margin-top: 2px; line-height: 1.5; }
+  .travel-card .time-badge {
+    font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem;
+    color: var(--accent); letter-spacing: 0.04em; white-space: nowrap; flex-shrink: 0;
+  }
+
+  /* OUTBOUND / RETURN TOGGLE */
+  .direction-toggle {
+    display: flex; gap: 0;
+    border: 1px solid var(--border); border-radius: 10px; overflow: hidden;
+    margin-bottom: 1.25rem;
+  }
+  .dir-btn {
+    flex: 1; padding: 8px 0; font-size: 12px; font-weight: 500; text-align: center;
+    cursor: pointer; color: var(--muted); background: transparent; border: none;
+    font-family: 'DM Sans', sans-serif; letter-spacing: 0.04em;
+    transition: background 0.15s, color 0.15s;
+  }
+  .dir-btn.active { background: var(--card); color: var(--white); }
+
+  .timeline { position: relative; padding-left: 20px; margin-bottom: 1.5rem; }
+  .timeline::before {
+    content: ''; position: absolute; left: 5px; top: 8px; bottom: 8px;
+    width: 1px; background: var(--border);
+  }
+  .tl-item { position: relative; padding: 0 0 1.25rem 1.25rem; }
+  .tl-item:last-child { padding-bottom: 0; }
+  .tl-dot {
+    position: absolute; left: -15px; top: 5px;
+    width: 9px; height: 9px; border-radius: 50%; border: 1.5px solid var(--black);
+  }
+  .tl-dot.travel  { background: #378ADD; }
+  .tl-dot.food    { background: var(--green); }
+  .tl-dot.pickup  { background: var(--lara); }
+  .tl-dot.gig     { background: var(--accent); }
+  .tl-dot.home    { background: var(--jon); }
+  .tl-dot.sleep   { background: var(--lara); }
+  .tl-time { font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; color: var(--accent); letter-spacing: 0.06em; line-height: 1; margin-bottom: 3px; }
+  .tl-title { font-size: 14px; font-weight: 500; color: var(--white); line-height: 1.3; }
+  .tl-sub { font-size: 12px; color: var(--body); margin-top: 3px; line-height: 1.5; }
+  .tl-chips { display: flex; gap: 5px; margin-top: 6px; flex-wrap: wrap; }
+  .tl-chip { font-size: 10px; font-weight: 500; padding: 2px 8px; border-radius: 20px; letter-spacing: 0.04em; }
+  .chip-lara  { background: rgba(155,127,232,0.15); color: var(--lara); }
+  .chip-jon   { background: rgba(93,191,149,0.15); color: var(--jon); }
+  .chip-gregg { background: rgba(232,132,74,0.15); color: var(--gregg); }
+  .chip-all   { background: rgba(232,197,71,0.12); color: var(--accent); }
+
+  .hidden { display: none; }
+
+  .picnic-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1rem 1.1rem; margin-bottom: 1.5rem; }
+  .picnic-heading { font-size: 13px; font-weight: 500; color: var(--white); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 8px; }
+  .picnic-items { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+  .picnic-item { font-size: 12px; color: var(--body); padding: 6px 10px; background: rgba(255,255,255,0.04); border-radius: 8px; border: 1px solid var(--border); }
+
+  .notice-card {
+    background: rgba(232,197,71,0.07); border: 1px solid rgba(232,197,71,0.25);
+    border-radius: 12px; padding: 0.875rem 1rem; margin-bottom: 1.5rem;
+  }
+  .notice-card .notice-heading { font-size: 12px; font-weight: 500; color: var(--accent); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 6px; }
+  .notice-card ul { list-style: none; display: flex; flex-direction: column; gap: 5px; }
+  .notice-card li { font-size: 12px; color: var(--body); line-height: 1.5; padding-left: 1rem; position: relative; }
+  .notice-card li::before { content: '—'; position: absolute; left: 0; color: var(--muted); }
+
+  .info-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-bottom: 1.5rem; }
+  .info-row { display: flex; align-items: center; gap: 12px; padding: 0.85rem 1.1rem; border-bottom: 1px solid var(--border); }
+  .info-row:last-child { border-bottom: none; }
+  .info-icon { width: 32px; height: 32px; border-radius: 8px; background: var(--accent-dim); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .info-icon svg { width: 16px; height: 16px; color: var(--accent); }
+  .info-label { font-size: 11px; color: var(--muted); margin-bottom: 1px; }
+  .info-value { font-size: 13px; color: var(--white); font-weight: 500; }
+
+  .map-btn {
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    width: 100%; padding: 14px; background: var(--accent); color: var(--black);
+    font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500;
+    border: none; border-radius: 12px; cursor: pointer; text-decoration: none;
+    margin-bottom: 1.5rem; letter-spacing: 0.02em; transition: opacity 0.15s;
+  }
+  .map-btn:active { opacity: 0.8; }
+  .map-btn svg { width: 16px; height: 16px; }
+
+  .checklist { display: flex; flex-direction: column; gap: 8px; margin-bottom: 1.5rem; }
+  .check-item {
+    display: flex; align-items: center; gap: 12px; padding: 0.75rem 1rem;
+    background: var(--card); border: 1px solid var(--border); border-radius: 10px;
+    cursor: pointer; transition: border-color 0.15s; -webkit-tap-highlight-color: transparent;
+  }
+  .check-item.done { border-color: var(--green); }
+  .check-item.done .check-text { color: var(--muted); text-decoration: line-through; }
+  .check-box {
+    width: 20px; height: 20px; border-radius: 6px; border: 1.5px solid var(--muted);
+    flex-shrink: 0; display: flex; align-items: center; justify-content: center; transition: all 0.15s;
+  }
+  .check-item.done .check-box { background: var(--green); border-color: var(--green); }
+  .check-box svg { width: 12px; height: 12px; color: var(--black); display: none; }
+  .check-item.done .check-box svg { display: block; }
+  .check-text { font-size: 13px; color: var(--white); line-height: 1.4; transition: color 0.15s; }
+
+  .footer { padding: 1.5rem 1.5rem calc(1.5rem + var(--safe)); border-top: 1px solid var(--border); text-align: center; }
+  .footer p { font-size: 11px; color: var(--muted); letter-spacing: 0.06em; }
+  .footer .artists { font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; color: var(--border); letter-spacing: 0.1em; margin-top: 6px; }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+  .hero, .countdown-bar { animation: fadeUp 0.5s ease both; }
+  .section { animation: fadeUp 0.5s ease 0.1s both; }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-noise"></div>
+  <div class="hero-stripe"></div>
+  <div class="event-label">Bowl My Bones Tour · Llangollen</div>
+  <h1>3 July<br><span>2026</span></h1>
+  <div class="hero-meta">
+    <div class="hero-pill gates">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 10h18M7 3v2M17 3v2M5 21h14a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2z"/></svg>
+      Gates 4:00 PM
+    </div>
+    <div class="hero-pill">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      Finish ~10:30 PM
+    </div>
+    <div class="hero-pill">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      Llangollen Pavilion
+    </div>
+  </div>
+</div>
+
+<div class="countdown-bar">
+  <div class="countdown-label">Days until the show</div>
+  <div class="countdown-units">
+    <div class="countdown-unit"><div class="countdown-num" id="cd-days">--</div><div class="countdown-unit-label">Days</div></div>
+    <div class="countdown-sep">:</div>
+    <div class="countdown-unit"><div class="countdown-num" id="cd-hours">--</div><div class="countdown-unit-label">Hours</div></div>
+    <div class="countdown-sep">:</div>
+    <div class="countdown-unit"><div class="countdown-num" id="cd-mins">--</div><div class="countdown-unit-label">Mins</div></div>
+    <div class="countdown-sep">:</div>
+    <div class="countdown-unit"><div class="countdown-num" id="cd-secs">--</div><div class="countdown-unit-label">Secs</div></div>
+  </div>
+</div>
+
+<!-- TRAVEL -->
+<div class="section">
+  <div class="section-heading">Who's travelling</div>
+  <div class="travel-cards">
+    <div class="travel-card">
+      <div class="avatar av-lara">LA</div>
+      <div class="info">
+        <div class="name">Lara</div>
+        <div class="route">Oxford OX3 8HX → Newport TF10 9HP<br>~1 hr 45 min · A40 / M40 / M54</div>
+      </div>
+      <div class="time-badge">11:45</div>
+    </div>
+    <div class="travel-card">
+      <div class="avatar av-jon">JO</div>
+      <div class="info">
+        <div class="name">Jon</div>
+        <div class="route">Penkridge ST19 5AG → Newport TF10 9HP<br>~30 min · A449 / A5</div>
+      </div>
+      <div class="time-badge">1:00</div>
+    </div>
+    <div class="travel-card">
+      <div class="avatar av-gregg">GH</div>
+      <div class="info">
+        <div class="name">Gregg</div>
+        <div class="route">Newport TF10 9HP · Dot &amp; Dave's — host &amp; driver</div>
+      </div>
+      <div class="time-badge">🏠</div>
+    </div>
+  </div>
+</div>
+
+<!-- TIMELINE -->
+<div class="section">
+  <div class="section-heading">Day plan</div>
+
+  <div class="direction-toggle">
+    <button class="dir-btn active" onclick="showDirection('out')">
+      ↗ Outbound
+    </button>
+    <button class="dir-btn" onclick="showDirection('back')">
+      ↙ Return
+    </button>
+  </div>
+
+  <!-- OUTBOUND -->
+  <div id="timeline-out" class="timeline">
+    <div class="tl-item">
+      <div class="tl-dot pickup"></div>
+      <div class="tl-time">11:30</div>
+      <div class="tl-title">Lara departs Oxford</div>
+      <div class="tl-sub">A40 → M40 → M54 → Newport TF10 9HP. ~1 hr 45 min.</div>
+      <div class="tl-chips"><span class="tl-chip chip-lara">Lara</span></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot pickup"></div>
+      <div class="tl-time">13:00</div>
+      <div class="tl-title">Jon departs Penkridge</div>
+      <div class="tl-sub">A449 → A5 to Newport. ~30 min.</div>
+      <div class="tl-chips"><span class="tl-chip chip-jon">Jon</span></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot travel"></div>
+      <div class="tl-time">13:30</div>
+      <div class="tl-title">Arrive at Dot &amp; Dave's</div>
+      <div class="tl-sub">Quick coffee, load the picnic, and straight on the road.</div>
+      <div class="tl-chips"><span class="tl-chip chip-all">All three</span></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot travel"></div>
+      <div class="tl-time">14:00</div>
+      <div class="tl-title">Depart for Llangollen</div>
+      <div class="tl-sub">A5 west through Chirk → Llangollen. ~1 hr 15 min. Sat nav: LL20 8SW.</div>
+      <div class="tl-chips"><span class="tl-chip chip-all">All three</span></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot food"></div>
+      <div class="tl-time">15:15</div>
+      <div class="tl-title">Arrive · park up · picnic</div>
+      <div class="tl-sub">Eat in the car before heading in — no food or drink permitted inside the venue.</div>
+      <div class="tl-chips"><span class="tl-chip chip-all">All three</span></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot travel"></div>
+      <div class="tl-time">15:45</div>
+      <div class="tl-title">Walk to the Pavilion</div>
+      <div class="tl-sub">Short walk from town parking to Abbey Rd. Join the queue.</div>
+      <div class="tl-chips"><span class="tl-chip chip-all">All three</span></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot gig"></div>
+      <div class="tl-time">16:00</div>
+      <div class="tl-title">Gates open — enjoy the show 🤘</div>
+      <div class="tl-sub">Frank Turner & The Sleeping Souls + Bowling for Soup. First act ~17:00.</div>
+      <div class="tl-chips"><span class="tl-chip chip-all">All three</span></div>
+    </div>
+  </div>
+
+  <!-- RETURN -->
+  <div id="timeline-back" class="timeline hidden">
+    <div class="tl-item">
+      <div class="tl-dot gig"></div>
+      <div class="tl-time">~22:30 PM</div>
+      <div class="tl-title">Show ends</div>
+      <div class="tl-sub">Official finish time. Allow 15–20 mins to clear the venue and reach the car.</div>
+      <div class="tl-chips"><span class="tl-chip chip-all">All three</span></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot travel"></div>
+      <div class="tl-time">~22:50 PM</div>
+      <div class="tl-title">Depart Llangollen</div>
+      <div class="tl-sub">A5 east back towards Newport. ~1 hr 15 min. Expect some post-show traffic leaving town.</div>
+      <div class="tl-chips"><span class="tl-chip chip-all">All three</span></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot home"></div>
+      <div class="tl-time">~00:05</div>
+      <div class="tl-title">Arrive back at Dot &amp; Dave's</div>
+      <div class="tl-sub">TF10 9HP. Drop everyone off and wind down.</div>
+      <div class="tl-chips"><span class="tl-chip chip-all">All three</span></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot home"></div>
+      <div class="tl-time">~00:20 AM</div>
+      <div class="tl-title">Jon heads home to Penkridge</div>
+      <div class="tl-sub">ST19 5AG via A5 / A449. ~30 min. Home by 00:50.</div>
+      <div class="tl-chips"><span class="tl-chip chip-jon">Jon</span></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot sleep"></div>
+      <div class="tl-time">00:20</div>
+      <div class="tl-title">Lara stays over 🛏</div>
+      <div class="tl-sub">Heads back to Oxford Sunday. ~1 hr 45 min via M54 / M40 / A40.</div>
+      <div class="tl-chips"><span class="tl-chip chip-lara">Lara</span><span class="tl-chip chip-gregg">Gregg</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- PICNIC NOTE -->
+<div class="section">
+  <div class="section-heading">Picnic</div>
+  <div class="notice-card">
+    <div class="notice-heading">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      No food or drink inside the venue
+    </div>
+    <ul>
+      <li>Eat in the car before heading in — park up by 3:15 PM</li>
+      <li>One sealed 500ml water bottle per person is allowed in</li>
+      <li>Empty reusable bottles permitted — free refill stations inside</li>
+      <li>Venue is fully cashless — no cash accepted anywhere on site</li>
+      <li>Food &amp; drink stalls available inside all evening</li>
+    </ul>
+  </div>
+  <div class="picnic-card">
+    <div class="picnic-heading"><span>🧺</span> Good stuff to bring</div>
+    <div class="picnic-items">
+      <div class="picnic-item">Sandwiches / wraps</div>
+      <div class="picnic-item">Scotch eggs</div>
+      <div class="picnic-item">Crisps &amp; dips</div>
+      <div class="picnic-item">Sausage rolls</div>
+      <div class="picnic-item">Fruit / grapes</div>
+      <div class="picnic-item">Drinks &amp; water</div>
+      <div class="picnic-item">Napkins &amp; cups</div>
+      <div class="picnic-item">Wet wipes</div>
+    </div>
+  </div>
+</div>
+
+<!-- VENUE INFO -->
+<div class="section">
+  <div class="section-heading">Venue</div>
+  <div class="info-card">
+    <div class="info-row">
+      <div class="info-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+      <div><div class="info-label">Address</div><div class="info-value">Abbey Rd, Llangollen LL20 8SW</div></div>
+    </div>
+    <div class="info-row">
+      <div class="info-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+      <div><div class="info-label">Timings</div><div class="info-value">Gates 4:00 PM · Finish ~10:30 PM</div></div>
+    </div>
+    <div class="info-row">
+      <div class="info-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg></div>
+      <div><div class="info-label">Payments</div><div class="info-value">Cashless only — card &amp; contactless</div></div>
+    </div>
+    <div class="info-row">
+      <div class="info-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+      <div><div class="info-label">Age restrictions</div><div class="info-value">Under 16s with adult · Under 5s free</div></div>
+    </div>
+    <div class="info-row">
+      <div class="info-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+      <div><div class="info-label">Indoors or out?</div><div class="info-value">Inside pavilion · food stalls outside</div></div>
+    </div>
+  </div>
+
+  <a class="map-btn" href="https://maps.apple.com/?address=Abbey+Rd,+Llangollen+LL20+8SW&t=m" target="_blank">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+    Open in Maps
+  </a>
+</div>
+
+<!-- CHECKLIST -->
+<div class="section">
+  <div class="section-heading">To-do before you go</div>
+  <div class="checklist" id="checklist">
+    <div class="check-item" onclick="toggleCheck(this)">
+      <div class="check-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+      <div class="check-text">Check set times (announced ~1–2 weeks before)</div>
+    </div>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <div class="check-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+      <div class="check-text">Send Lara the plan &amp; confirm timings</div>
+    </div>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <div class="check-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+      <div class="check-text">Sort the picnic supplies</div>
+    </div>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <div class="check-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+      <div class="check-text">Sort a bed / room for Lara</div>
+    </div>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <div class="check-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+      <div class="check-text">Check A5 for roadworks nearer the date</div>
+    </div>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <div class="check-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+      <div class="check-text">Confirm everyone has tickets</div>
+    </div>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <div class="check-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+      <div class="check-text">Check weather forecast the day before</div>
+    </div>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <div class="check-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+      <div class="check-text">Remember card — venue is cashless</div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <p>Friday 3 July 2026 · Llangollen, North Wales</p>
+  <div class="artists">Bowling for Soup · Frank Turner &amp; The Sleeping Souls</div>
+</div>
+
+<script>
+  function updateCountdown() {
+    var target = new Date('2026-07-03T16:00:00');
+    var now = new Date();
+    var diff = target - now;
+    if (diff <= 0) {
+      ['days','hours','mins','secs'].forEach(function(u) { document.getElementById('cd-'+u).textContent = '00'; });
+      return;
+    }
+    var days  = Math.floor(diff / 86400000);
+    var hours = Math.floor((diff % 86400000) / 3600000);
+    var mins  = Math.floor((diff % 3600000) / 60000);
+    var secs  = Math.floor((diff % 60000) / 1000);
+    document.getElementById('cd-days').textContent  = String(days).padStart(2,'0');
+    document.getElementById('cd-hours').textContent = String(hours).padStart(2,'0');
+    document.getElementById('cd-mins').textContent  = String(mins).padStart(2,'0');
+    document.getElementById('cd-secs').textContent  = String(secs).padStart(2,'0');
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+
+  function showDirection(dir) {
+    document.getElementById('timeline-out').classList.toggle('hidden', dir !== 'out');
+    document.getElementById('timeline-back').classList.toggle('hidden', dir !== 'back');
+    document.querySelectorAll('.dir-btn').forEach(function(b, i) {
+      b.classList.toggle('active', (i === 0 && dir === 'out') || (i === 1 && dir === 'back'));
+    });
+  }
+
+  function toggleCheck(el) {
+    el.classList.toggle('done');
+    saveChecks();
+  }
+
+  function saveChecks() {
+    var states = Array.from(document.querySelectorAll('.check-item')).map(function(i) { return i.classList.contains('done'); });
+    try { localStorage.setItem('bmb-checks', JSON.stringify(states)); } catch(e) {}
+  }
+
+  function loadChecks() {
+    try {
+      var saved = localStorage.getItem('bmb-checks');
+      if (!saved) return;
+      JSON.parse(saved).forEach(function(done, i) {
+        var items = document.querySelectorAll('.check-item');
+        if (done && items[i]) items[i].classList.add('done');
+      });
+    } catch(e) {}
+  }
+  loadChecks();
+</script>
+</body>
+</html>
