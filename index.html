@@ -14,69 +14,30 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --black: #0a0a0a;
-    --off-black: #111;
-    --card: #161616;
-    --border: #2a2a2a;
-    --muted: #555;
-    --body: #aaa;
-    --white: #f0ede6;
-    --accent: #e8c547;
-    --accent-dim: rgba(232,197,71,0.12);
-    --red: #d94f3d;
-    --green: #3d9e6e;
-    --lara: #9b7fe8;
-    --jon: #5dbf95;
-    --gregg: #e8844a;
+    --black: #0a0a0a; --off-black: #111; --card: #161616; --border: #2a2a2a;
+    --muted: #555; --body: #aaa; --white: #f0ede6;
+    --accent: #e8c547; --accent-dim: rgba(232,197,71,0.12);
+    --green: #3d9e6e; --lara: #9b7fe8; --jon: #5dbf95; --gregg: #e8844a; --cam: #e84a7a;
     --safe: env(safe-area-inset-bottom, 0px);
   }
 
   html { background: var(--black); }
+  body { font-family: 'DM Sans', sans-serif; background: var(--black); color: var(--white); min-height: 100dvh; max-width: 480px; margin: 0 auto; overflow-x: hidden; }
 
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--black);
-    color: var(--white);
-    min-height: 100dvh;
-    max-width: 480px;
-    margin: 0 auto;
-    overflow-x: hidden;
-  }
-
-  .hero {
-    position: relative;
-    padding: 3rem 1.5rem 2rem;
-    overflow: hidden;
-    border-bottom: 1px solid var(--border);
-  }
-  .hero-noise {
-    position: absolute; inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-    opacity: 0.6; pointer-events: none;
-  }
+  /* HERO */
+  .hero { position: relative; padding: 3rem 1.5rem 2rem; overflow: hidden; border-bottom: 1px solid var(--border); }
+  .hero-noise { position: absolute; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"); opacity: 0.6; pointer-events: none; }
   .hero-stripe { position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--accent); }
-  .event-label {
-    font-size: 10px; font-weight: 500; letter-spacing: 0.2em;
-    text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem;
-  }
-  .hero h1 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(3.5rem, 16vw, 4.5rem);
-    line-height: 0.92; letter-spacing: 0.02em; color: var(--white); margin-bottom: 0.5rem;
-  }
+  .event-label { font-size: 10px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem; }
+  .hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3.5rem, 16vw, 4.5rem); line-height: 0.92; letter-spacing: 0.02em; color: var(--white); margin-bottom: 0.5rem; }
   .hero h1 span { color: var(--accent); }
   .hero-meta { display: flex; gap: 0.6rem; margin-top: 1.25rem; flex-wrap: wrap; }
-  .hero-pill {
-    display: inline-flex; align-items: center; gap: 6px;
-    font-size: 11px; font-weight: 500; padding: 5px 10px;
-    border-radius: 20px; border: 1px solid var(--border); color: var(--body);
-  }
+  .hero-pill { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 500; padding: 5px 10px; border-radius: 20px; border: 1px solid var(--border); color: var(--body); }
   .hero-pill.gates { border-color: var(--accent); color: var(--accent); background: var(--accent-dim); }
   .hero-pill svg { width: 12px; height: 12px; flex-shrink: 0; }
 
-  .countdown-bar {
-    padding: 1.25rem 1.5rem; border-bottom: 1px solid var(--border); background: var(--off-black);
-  }
+  /* COUNTDOWN */
+  .countdown-bar { padding: 1.25rem 1.5rem; border-bottom: 1px solid var(--border); background: var(--off-black); }
   .countdown-label { font-size: 10px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.6rem; }
   .countdown-units { display: flex; gap: 1rem; align-items: baseline; }
   .countdown-unit { text-align: center; }
@@ -84,61 +45,51 @@
   .countdown-unit-label { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-top: 2px; }
   .countdown-sep { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; color: var(--border); line-height: 1; padding-bottom: 4px; }
 
+  /* TOP NAV TABS */
+  .top-nav { position: sticky; top: 0; z-index: 100; background: var(--off-black); border-bottom: 1px solid var(--border); display: flex; overflow-x: auto; scrollbar-width: none; }
+  .top-nav::-webkit-scrollbar { display: none; }
+  .nav-btn { flex-shrink: 0; padding: 10px 16px; font-size: 12px; font-weight: 500; color: var(--muted); background: transparent; border: none; border-bottom: 2px solid transparent; cursor: pointer; font-family: 'DM Sans', sans-serif; letter-spacing: 0.04em; white-space: nowrap; transition: color 0.15s, border-color 0.15s; }
+  .nav-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+  /* PAGES */
+  .page { display: none; }
+  .page.visible { display: block; }
+
+  /* SECTIONS */
   .section { padding: 1.5rem 1.5rem 0; }
   .section-heading { font-size: 10px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem; }
 
+  /* TRAVEL CARDS */
   .travel-cards { display: flex; flex-direction: column; gap: 10px; margin-bottom: 1.5rem; }
-  .travel-card {
-    background: var(--card); border: 1px solid var(--border); border-radius: 12px;
-    padding: 1rem 1.1rem; display: flex; align-items: flex-start; gap: 12px;
-  }
-  .travel-card .avatar {
-    width: 36px; height: 36px; border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 12px; font-weight: 500; flex-shrink: 0;
-  }
+  .travel-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1rem 1.1rem; display: flex; align-items: flex-start; gap: 12px; }
+  .travel-card .avatar { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 500; flex-shrink: 0; }
   .av-lara  { background: rgba(155,127,232,0.15); color: var(--lara); }
   .av-jon   { background: rgba(93,191,149,0.15); color: var(--jon); }
   .av-gregg { background: rgba(232,132,74,0.15); color: var(--gregg); }
+  .av-cam   { background: rgba(232,74,122,0.15); color: var(--cam); }
   .travel-card .info { flex: 1; min-width: 0; }
   .travel-card .name { font-size: 14px; font-weight: 500; color: var(--white); }
   .travel-card .route { font-size: 12px; color: var(--body); margin-top: 2px; line-height: 1.5; }
-  .travel-card .time-badge {
-    font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem;
-    color: var(--accent); letter-spacing: 0.04em; white-space: nowrap; flex-shrink: 0;
-  }
+  .travel-card .time-badge { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; color: var(--accent); letter-spacing: 0.04em; white-space: nowrap; flex-shrink: 0; }
 
-  /* OUTBOUND / RETURN TOGGLE */
-  .direction-toggle {
-    display: flex; gap: 0;
-    border: 1px solid var(--border); border-radius: 10px; overflow: hidden;
-    margin-bottom: 1.25rem;
-  }
-  .dir-btn {
-    flex: 1; padding: 8px 0; font-size: 12px; font-weight: 500; text-align: center;
-    cursor: pointer; color: var(--muted); background: transparent; border: none;
-    font-family: 'DM Sans', sans-serif; letter-spacing: 0.04em;
-    transition: background 0.15s, color 0.15s;
-  }
+  /* DIRECTION TOGGLE */
+  .direction-toggle { display: flex; gap: 0; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 1.25rem; }
+  .dir-btn { flex: 1; padding: 8px 0; font-size: 12px; font-weight: 500; text-align: center; cursor: pointer; color: var(--muted); background: transparent; border: none; font-family: 'DM Sans', sans-serif; letter-spacing: 0.04em; transition: background 0.15s, color 0.15s; }
   .dir-btn.active { background: var(--card); color: var(--white); }
 
+  /* TIMELINE */
   .timeline { position: relative; padding-left: 20px; margin-bottom: 1.5rem; }
-  .timeline::before {
-    content: ''; position: absolute; left: 5px; top: 8px; bottom: 8px;
-    width: 1px; background: var(--border);
-  }
+  .timeline::before { content: ''; position: absolute; left: 5px; top: 8px; bottom: 8px; width: 1px; background: var(--border); }
   .tl-item { position: relative; padding: 0 0 1.25rem 1.25rem; }
   .tl-item:last-child { padding-bottom: 0; }
-  .tl-dot {
-    position: absolute; left: -15px; top: 5px;
-    width: 9px; height: 9px; border-radius: 50%; border: 1.5px solid var(--black);
-  }
+  .tl-dot { position: absolute; left: -15px; top: 5px; width: 9px; height: 9px; border-radius: 50%; border: 1.5px solid var(--black); }
   .tl-dot.travel  { background: #378ADD; }
   .tl-dot.food    { background: var(--green); }
   .tl-dot.pickup  { background: var(--lara); }
   .tl-dot.gig     { background: var(--accent); }
   .tl-dot.home    { background: var(--jon); }
   .tl-dot.sleep   { background: var(--lara); }
+  .tl-dot.driver  { background: var(--cam); }
   .tl-time { font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; color: var(--accent); letter-spacing: 0.06em; line-height: 1; margin-bottom: 3px; }
   .tl-title { font-size: 14px; font-weight: 500; color: var(--white); line-height: 1.3; }
   .tl-sub { font-size: 12px; color: var(--body); margin-top: 3px; line-height: 1.5; }
@@ -147,24 +98,23 @@
   .chip-lara  { background: rgba(155,127,232,0.15); color: var(--lara); }
   .chip-jon   { background: rgba(93,191,149,0.15); color: var(--jon); }
   .chip-gregg { background: rgba(232,132,74,0.15); color: var(--gregg); }
+  .chip-cam   { background: rgba(232,74,122,0.15); color: var(--cam); }
   .chip-all   { background: rgba(232,197,71,0.12); color: var(--accent); }
-
   .hidden { display: none; }
 
+  /* PICNIC */
   .picnic-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1rem 1.1rem; margin-bottom: 1.5rem; }
   .picnic-heading { font-size: 13px; font-weight: 500; color: var(--white); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 8px; }
   .picnic-items { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
   .picnic-item { font-size: 12px; color: var(--body); padding: 6px 10px; background: rgba(255,255,255,0.04); border-radius: 8px; border: 1px solid var(--border); }
 
-  .notice-card {
-    background: rgba(232,197,71,0.07); border: 1px solid rgba(232,197,71,0.25);
-    border-radius: 12px; padding: 0.875rem 1rem; margin-bottom: 1.5rem;
-  }
+  .notice-card { background: rgba(232,197,71,0.07); border: 1px solid rgba(232,197,71,0.25); border-radius: 12px; padding: 0.875rem 1rem; margin-bottom: 1.5rem; }
   .notice-card .notice-heading { font-size: 12px; font-weight: 500; color: var(--accent); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 6px; }
   .notice-card ul { list-style: none; display: flex; flex-direction: column; gap: 5px; }
   .notice-card li { font-size: 12px; color: var(--body); line-height: 1.5; padding-left: 1rem; position: relative; }
   .notice-card li::before { content: '—'; position: absolute; left: 0; color: var(--muted); }
 
+  /* VENUE */
   .info-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-bottom: 1.5rem; }
   .info-row { display: flex; align-items: center; gap: 12px; padding: 0.85rem 1.1rem; border-bottom: 1px solid var(--border); }
   .info-row:last-child { border-bottom: none; }
@@ -172,33 +122,46 @@
   .info-icon svg { width: 16px; height: 16px; color: var(--accent); }
   .info-label { font-size: 11px; color: var(--muted); margin-bottom: 1px; }
   .info-value { font-size: 13px; color: var(--white); font-weight: 500; }
-
-  .map-btn {
-    display: flex; align-items: center; justify-content: center; gap: 8px;
-    width: 100%; padding: 14px; background: var(--accent); color: var(--black);
-    font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500;
-    border: none; border-radius: 12px; cursor: pointer; text-decoration: none;
-    margin-bottom: 1.5rem; letter-spacing: 0.02em; transition: opacity 0.15s;
-  }
+  .map-btn { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 14px; background: var(--accent); color: var(--black); font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; border: none; border-radius: 12px; cursor: pointer; text-decoration: none; margin-bottom: 0.75rem; letter-spacing: 0.02em; transition: opacity 0.15s; }
   .map-btn:active { opacity: 0.8; }
   .map-btn svg { width: 16px; height: 16px; }
 
+  /* CHECKLIST */
   .checklist { display: flex; flex-direction: column; gap: 8px; margin-bottom: 1.5rem; }
-  .check-item {
-    display: flex; align-items: center; gap: 12px; padding: 0.75rem 1rem;
-    background: var(--card); border: 1px solid var(--border); border-radius: 10px;
-    cursor: pointer; transition: border-color 0.15s; -webkit-tap-highlight-color: transparent;
-  }
+  .check-item { display: flex; align-items: center; gap: 12px; padding: 0.75rem 1rem; background: var(--card); border: 1px solid var(--border); border-radius: 10px; cursor: pointer; transition: border-color 0.15s; -webkit-tap-highlight-color: transparent; }
   .check-item.done { border-color: var(--green); }
   .check-item.done .check-text { color: var(--muted); text-decoration: line-through; }
-  .check-box {
-    width: 20px; height: 20px; border-radius: 6px; border: 1.5px solid var(--muted);
-    flex-shrink: 0; display: flex; align-items: center; justify-content: center; transition: all 0.15s;
-  }
+  .check-box { width: 20px; height: 20px; border-radius: 6px; border: 1.5px solid var(--muted); flex-shrink: 0; display: flex; align-items: center; justify-content: center; transition: all 0.15s; }
   .check-item.done .check-box { background: var(--green); border-color: var(--green); }
   .check-box svg { width: 12px; height: 12px; color: var(--black); display: none; }
   .check-item.done .check-box svg { display: block; }
   .check-text { font-size: 13px; color: var(--white); line-height: 1.4; transition: color 0.15s; }
+
+  /* PLAYLIST */
+  .band-tabs { display: flex; gap: 0; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 1.25rem; }
+  .band-tab { flex: 1; padding: 8px 4px; font-size: 11px; font-weight: 500; text-align: center; cursor: pointer; color: var(--muted); background: transparent; border: none; font-family: 'DM Sans', sans-serif; transition: background 0.15s, color 0.15s; line-height: 1.3; }
+  .band-tab.active { background: var(--card); color: var(--white); }
+  .band-content { display: none; }
+  .band-content.visible { display: block; }
+  .band-header { margin-bottom: 1rem; }
+  .band-name { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; letter-spacing: 0.04em; color: var(--white); line-height: 1; }
+  .band-desc { font-size: 12px; color: var(--body); margin-top: 4px; line-height: 1.5; }
+  .track-list { display: flex; flex-direction: column; gap: 6px; margin-bottom: 1rem; }
+  .track-item { display: flex; align-items: center; gap: 10px; padding: 0.7rem 0.9rem; background: var(--card); border: 1px solid var(--border); border-radius: 10px; }
+  .track-num { font-family: 'Bebas Neue', sans-serif; font-size: 1rem; color: var(--muted); width: 18px; text-align: center; flex-shrink: 0; }
+  .track-info { flex: 1; min-width: 0; }
+  .track-title { font-size: 13px; font-weight: 500; color: var(--white); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .track-album { font-size: 11px; color: var(--muted); margin-top: 1px; }
+  .track-links { display: flex; gap: 6px; flex-shrink: 0; }
+  .stream-btn { display: flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 8px; text-decoration: none; font-size: 13px; transition: opacity 0.15s; }
+  .stream-btn:active { opacity: 0.7; }
+  .btn-apple { background: rgba(255,255,255,0.06); border: 1px solid var(--border); }
+  .btn-spotify { background: rgba(29,185,84,0.12); border: 1px solid rgba(29,185,84,0.25); }
+  .stream-all { display: flex; gap: 8px; margin-bottom: 1.5rem; }
+  .stream-all-btn { flex: 1; display: flex; align-items: center; justify-content: center; gap: 6px; padding: 10px; border-radius: 10px; text-decoration: none; font-size: 12px; font-weight: 500; font-family: 'DM Sans', sans-serif; transition: opacity 0.15s; }
+  .stream-all-btn:active { opacity: 0.7; }
+  .sab-apple { background: rgba(255,255,255,0.06); border: 1px solid var(--border); color: var(--white); }
+  .sab-spotify { background: rgba(29,185,84,0.12); border: 1px solid rgba(29,185,84,0.25); color: #1db954; }
 
   .footer { padding: 1.5rem 1.5rem calc(1.5rem + var(--safe)); border-top: 1px solid var(--border); text-align: center; }
   .footer p { font-size: 11px; color: var(--muted); letter-spacing: 0.06em; }
@@ -206,11 +169,11 @@
 
   @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
   .hero, .countdown-bar { animation: fadeUp 0.5s ease both; }
-  .section { animation: fadeUp 0.5s ease 0.1s both; }
 </style>
 </head>
 <body>
 
+<!-- HERO -->
 <div class="hero">
   <div class="hero-noise"></div>
   <div class="hero-stripe"></div>
@@ -223,7 +186,7 @@
     </div>
     <div class="hero-pill">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-      Finish 22.30
+      Finish 22:30
     </div>
     <div class="hero-pill">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
@@ -232,6 +195,7 @@
   </div>
 </div>
 
+<!-- COUNTDOWN -->
 <div class="countdown-bar">
   <div class="countdown-label">Days until the show</div>
   <div class="countdown-units">
@@ -245,255 +209,343 @@
   </div>
 </div>
 
-<!-- TRAVEL -->
-<div class="section">
-  <div class="section-heading">Who's travelling</div>
-  <div class="travel-cards">
-    <div class="travel-card">
-      <div class="avatar av-lara">LCL</div>
-      <div class="info">
-        <div class="name">Lara</div>
-        <div class="route">Oxford OX3 8HX → Newport TF10 9HP<br>~1 hr 45 min · A40 / M40 / M54</div>
+<!-- TOP NAV -->
+<nav class="top-nav">
+  <button class="nav-btn active" onclick="showPage('plan')">📅 Plan</button>
+  <button class="nav-btn" onclick="showPage('picnic')">🧺 Picnic</button>
+  <button class="nav-btn" onclick="showPage('playlist')">🎵 Playlist</button>
+  <button class="nav-btn" onclick="showPage('venue')">📍 Venue</button>
+  <button class="nav-btn" onclick="showPage('todo')">✅ To-do</button>
+</nav>
+
+<!-- PAGE: PLAN -->
+<div id="page-plan" class="page visible">
+  <div class="section">
+    <div class="section-heading">Who's travelling</div>
+    <div class="travel-cards">
+      <div class="travel-card">
+        <div class="avatar av-lara">LCL</div>
+        <div class="info">
+          <div class="name">Lara</div>
+          <div class="route">Oxford OX3 8HX → Newport TF10 9HP<br>~1 hr 45 min · A40 / M40 / M54</div>
+        </div>
+        <div class="time-badge">11:45</div>
       </div>
-      <div class="time-badge">11:45</div>
-    </div>
-    <div class="travel-card">
-      <div class="avatar av-jon">JG</div>
-      <div class="info">
-        <div class="name">Jon</div>
-        <div class="route">Penkridge ST19 5AG → Newport TF10 9HP<br>~30 min · A449 / A5</div>
+      <div class="travel-card">
+        <div class="avatar av-jon">JG</div>
+        <div class="info">
+          <div class="name">Jon</div>
+          <div class="route">Penkridge ST19 5AG → Newport TF10 9HP<br>~30 min · A449 / A5</div>
+        </div>
+        <div class="time-badge">13:00</div>
       </div>
-      <div class="time-badge">13:00</div>
-    </div>
-    <div class="travel-card">
-      <div class="avatar av-gregg">GH</div>
-      <div class="info">
-        <div class="name">Gregg</div>
-        <div class="route">Newport TF10 9HP · Dot &amp; Dave's — host &amp; driver</div>
+      <div class="travel-card">
+        <div class="avatar av-gregg">GH</div>
+        <div class="info">
+          <div class="name">Gregg</div>
+          <div class="route">Newport TF10 9HP · Dot &amp; Dave's</div>
+        </div>
+        <div class="time-badge">🏠</div>
       </div>
-      <div class="time-badge">🏠</div>
+      <div class="travel-card" style="border-color: rgba(232,74,122,0.3);">
+        <div class="avatar av-cam">CG</div>
+        <div class="info">
+          <div class="name">Cam <span style="font-size:11px; color: var(--cam); font-weight:400;">· Driver 🚗</span></div>
+          <div class="route">Telford TF2 8JF → Newport TF10 9HP<br>~15 min · picks everyone up from Dot &amp; Dave's</div>
+        </div>
+        <div class="time-badge">13:45</div>
+      </div>
     </div>
   </div>
+
+  <div class="section">
+    <div class="section-heading">Day plan</div>
+    <div class="direction-toggle">
+      <button class="dir-btn active" onclick="showDirection('out')">↗ Outbound</button>
+      <button class="dir-btn" onclick="showDirection('back')">↙ Return</button>
+    </div>
+
+    <div id="timeline-out" class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot pickup"></div>
+        <div class="tl-time">11:45</div>
+        <div class="tl-title">Lara departs Oxford</div>
+        <div class="tl-sub">A40 → M40 → M54 → Newport TF10 9HP. ~1 hr 45 min.</div>
+        <div class="tl-chips"><span class="tl-chip chip-lara">Lara</span></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot pickup"></div>
+        <div class="tl-time">13:00</div>
+        <div class="tl-title">Jon departs Penkridge</div>
+        <div class="tl-sub">A449 → A5 to Newport. ~30 min.</div>
+        <div class="tl-chips"><span class="tl-chip chip-jon">Jon</span></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot travel"></div>
+        <div class="tl-time">13:30</div>
+        <div class="tl-title">Arrive at Dot &amp; Dave's</div>
+        <div class="tl-sub">Quick coffee, load the picnic, Cam on his way.</div>
+        <div class="tl-chips"><span class="tl-chip chip-lara">Lara</span><span class="tl-chip chip-jon">Jon</span><span class="tl-chip chip-gregg">Gregg</span></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot driver"></div>
+        <div class="tl-time">13:45</div>
+        <div class="tl-title">Cam arrives — everyone loads up</div>
+        <div class="tl-sub">TF2 8JF → TF10 9HP. ~15 min. Cam driving from here.</div>
+        <div class="tl-chips"><span class="tl-chip chip-all">All four</span></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot travel"></div>
+        <div class="tl-time">14:00</div>
+        <div class="tl-title">Depart for Llangollen</div>
+        <div class="tl-sub">A5 west through Chirk → Llangollen. ~1 hr 15 min. Sat nav: LL20 8SW.</div>
+        <div class="tl-chips"><span class="tl-chip chip-all">All four</span></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot food"></div>
+        <div class="tl-time">15:15</div>
+        <div class="tl-title">Arrive · park up · picnic</div>
+        <div class="tl-sub">Eat in the car before heading in — no food or drink permitted inside.</div>
+        <div class="tl-chips"><span class="tl-chip chip-all">All four</span></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot travel"></div>
+        <div class="tl-time">15:45</div>
+        <div class="tl-title">Walk to the Pavilion</div>
+        <div class="tl-sub">Short walk from car park to Abbey Rd. Join the queue.</div>
+        <div class="tl-chips"><span class="tl-chip chip-all">All four</span></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot gig"></div>
+        <div class="tl-time">16:00</div>
+        <div class="tl-title">Gates open — enjoy the show 🤘</div>
+        <div class="tl-sub">American Hi-Fi · Frank Turner &amp; The Sleeping Souls · Bowling for Soup. First act ~17:00.</div>
+        <div class="tl-chips"><span class="tl-chip chip-all">All four</span></div>
+      </div>
+    </div>
+
+    <div id="timeline-back" class="timeline hidden">
+      <div class="tl-item">
+        <div class="tl-dot gig"></div>
+        <div class="tl-time">22:30</div>
+        <div class="tl-title">Show ends</div>
+        <div class="tl-sub">Allow 15–20 mins to clear the venue and get back to the car.</div>
+        <div class="tl-chips"><span class="tl-chip chip-all">All four</span></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot travel"></div>
+        <div class="tl-time">22:50</div>
+        <div class="tl-title">Depart Llangollen</div>
+        <div class="tl-sub">A5 east back towards Newport. ~1 hr 15 min. Expect some post-show traffic.</div>
+        <div class="tl-chips"><span class="tl-chip chip-all">All four</span></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot home"></div>
+        <div class="tl-time">00:05</div>
+        <div class="tl-title">Arrive back at Dot &amp; Dave's</div>
+        <div class="tl-sub">TF10 9HP. Drop off and wind down.</div>
+        <div class="tl-chips"><span class="tl-chip chip-all">All four</span></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot driver"></div>
+        <div class="tl-time">00:20</div>
+        <div class="tl-title">Cam heads home to Telford</div>
+        <div class="tl-sub">TF2 8JF. ~15 min. Home by ~00:35.</div>
+        <div class="tl-chips"><span class="tl-chip chip-cam">Cam</span></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot home"></div>
+        <div class="tl-time">00:20</div>
+        <div class="tl-title">Jon heads home to Penkridge</div>
+        <div class="tl-sub">ST19 5AG via A5 / A449. ~30 min. Home by ~00:50.</div>
+        <div class="tl-chips"><span class="tl-chip chip-jon">Jon</span></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot sleep"></div>
+        <div class="tl-time">00:20</div>
+        <div class="tl-title">Lara stays over 🛏</div>
+        <div class="tl-sub">Heads back to Oxford Sunday. ~1 hr 45 min via M54 / M40 / A40.</div>
+        <div class="tl-chips"><span class="tl-chip chip-lara">Lara</span><span class="tl-chip chip-gregg">Gregg</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div style="padding-bottom: 1.5rem;"></div>
 </div>
 
-<!-- TIMELINE -->
-<div class="section">
-  <div class="section-heading">Day plan</div>
-
-  <div class="direction-toggle">
-    <button class="dir-btn active" onclick="showDirection('out')">
-      ↗ Outbound
-    </button>
-    <button class="dir-btn" onclick="showDirection('back')">
-      ↙ Return
-    </button>
-  </div>
-
-  <!-- OUTBOUND -->
-  <div id="timeline-out" class="timeline">
-    <div class="tl-item">
-      <div class="tl-dot pickup"></div>
-      <div class="tl-time">11:30</div>
-      <div class="tl-title">Lara departs Oxford</div>
-      <div class="tl-sub">A40 → M40 → M54 → Newport TF10 9HP. ~1 hr 45 min.</div>
-      <div class="tl-chips"><span class="tl-chip chip-lara">Lara</span></div>
+<!-- PAGE: PICNIC -->
+<div id="page-picnic" class="page">
+  <div class="section">
+    <div class="section-heading">Picnic</div>
+    <div class="notice-card">
+      <div class="notice-heading">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        No food or drink inside the venue
+      </div>
+      <ul>
+        <li>Eat in the car before heading in — park up by 15:15</li>
+        <li>One sealed 500ml water bottle per person is allowed in</li>
+        <li>Empty reusable bottles permitted — free refill stations inside</li>
+        <li>Venue is fully cashless — no cash accepted anywhere on site</li>
+        <li>Food &amp; drink stalls available inside all evening</li>
+      </ul>
     </div>
-    <div class="tl-item">
-      <div class="tl-dot pickup"></div>
-      <div class="tl-time">13:00</div>
-      <div class="tl-title">Jon departs Penkridge</div>
-      <div class="tl-sub">A449 → A5 to Newport. ~30 min.</div>
-      <div class="tl-chips"><span class="tl-chip chip-jon">Jon</span></div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-dot travel"></div>
-      <div class="tl-time">13:30</div>
-      <div class="tl-title">Arrive at Dot &amp; Dave's</div>
-      <div class="tl-sub">Quick coffee, load the picnic, and straight on the road.</div>
-      <div class="tl-chips"><span class="tl-chip chip-all">All three</span></div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-dot travel"></div>
-      <div class="tl-time">14:00</div>
-      <div class="tl-title">Depart for Llangollen</div>
-      <div class="tl-sub">A5 west through Chirk → Llangollen. ~1 hr 15 min. Sat nav: LL20 8SW.</div>
-      <div class="tl-chips"><span class="tl-chip chip-all">All three</span></div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-dot food"></div>
-      <div class="tl-time">15:15</div>
-      <div class="tl-title">Arrive · park up · picnic</div>
-      <div class="tl-sub">Eat in the car before heading in — no food or drink permitted inside the venue.</div>
-      <div class="tl-chips"><span class="tl-chip chip-all">All three</span></div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-dot travel"></div>
-      <div class="tl-time">15:45</div>
-      <div class="tl-title">Walk to the Pavilion</div>
-      <div class="tl-sub">Short walk from town parking to Abbey Rd. Join the queue.</div>
-      <div class="tl-chips"><span class="tl-chip chip-all">All three</span></div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-dot gig"></div>
-      <div class="tl-time">16:00</div>
-      <div class="tl-title">Gates open — enjoy the show 🤘</div>
-      <div class="tl-sub">Frank Turner & The Sleeping Souls + Bowling for Soup. First act ~17:00.</div>
-      <div class="tl-chips"><span class="tl-chip chip-all">All three</span></div>
+    <div class="picnic-card">
+      <div class="picnic-heading"><span>🧺</span> Good stuff to bring</div>
+      <div class="picnic-items">
+        <div class="picnic-item">Sandwiches / wraps</div>
+        <div class="picnic-item">Scotch eggs</div>
+        <div class="picnic-item">Crisps &amp; dips</div>
+        <div class="picnic-item">Sausage rolls</div>
+        <div class="picnic-item">Fruit / grapes</div>
+        <div class="picnic-item">Drinks &amp; water</div>
+        <div class="picnic-item">Napkins &amp; cups</div>
+        <div class="picnic-item">Wet wipes</div>
+      </div>
     </div>
   </div>
-
-  <!-- RETURN -->
-  <div id="timeline-back" class="timeline hidden">
-    <div class="tl-item">
-      <div class="tl-dot gig"></div>
-      <div class="tl-time">22:30</div>
-      <div class="tl-title">Show ends</div>
-      <div class="tl-sub">Official finish time. Allow 15–20 mins to clear the venue and reach the car.</div>
-      <div class="tl-chips"><span class="tl-chip chip-all">All three</span></div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-dot travel"></div>
-      <div class="tl-time">22:50</div>
-      <div class="tl-title">Depart Llangollen</div>
-      <div class="tl-sub">A5 east back towards Newport. ~1 hr 15 min. Expect some post-show traffic leaving town.</div>
-      <div class="tl-chips"><span class="tl-chip chip-all">All three</span></div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-dot home"></div>
-      <div class="tl-time">00:05</div>
-      <div class="tl-title">Arrive back at Dot &amp; Dave's</div>
-      <div class="tl-sub">TF10 9HP. Drop everyone off and wind down.</div>
-      <div class="tl-chips"><span class="tl-chip chip-all">All three</span></div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-dot home"></div>
-      <div class="tl-time">00:20</div>
-      <div class="tl-title">Jon heads home to Penkridge</div>
-      <div class="tl-sub">ST19 5AG via A5 / A449. ~30 min. Home by 00:50.</div>
-      <div class="tl-chips"><span class="tl-chip chip-jon">Jon</span></div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-dot sleep"></div>
-      <div class="tl-time">00:20</div>
-      <div class="tl-title">Lara stays over 🛏</div>
-      <div class="tl-sub">Heads back to Oxford Sunday. ~1 hr 45 min via M54 / M40 / A40.</div>
-      <div class="tl-chips"><span class="tl-chip chip-lara">Lara</span><span class="tl-chip chip-gregg">Gregg</span></div>
-    </div>
-  </div>
+  <div style="padding-bottom: 1.5rem;"></div>
 </div>
 
-<!-- PICNIC NOTE -->
-<div class="section">
-  <div class="section-heading">Picnic</div>
-  <div class="notice-card">
-    <div class="notice-heading">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-      No food or drink inside the venue
+<!-- PAGE: PLAYLIST -->
+<div id="page-playlist" class="page">
+  <div class="section">
+    <div class="section-heading">Warm up with the bands</div>
+    <div class="band-tabs">
+      <button class="band-tab active" onclick="showBand('bfs')">Bowling<br>for Soup</button>
+      <button class="band-tab" onclick="showBand('ft')">Frank<br>Turner</button>
+      <button class="band-tab" onclick="showBand('ahf')">American<br>Hi-Fi</button>
     </div>
-    <ul>
-      <li>Eat in the car before heading in — park up by 3:15 PM</li>
-      <li>One sealed 500ml water bottle per person is allowed in</li>
-      <li>Empty reusable bottles permitted — free refill stations inside</li>
-      <li>Venue is fully cashless — no cash accepted anywhere on site</li>
-      <li>Food &amp; drink stalls available inside all evening</li>
-    </ul>
-  </div>
-  <div class="picnic-card">
-    <div class="picnic-heading"><span>🧺</span> Good stuff to bring</div>
-    <div class="picnic-items">
-      <div class="picnic-item">Sandwiches / wraps</div>
-      <div class="picnic-item">Scotch eggs</div>
-      <div class="picnic-item">Crisps &amp; dips</div>
-      <div class="picnic-item">Sausage rolls</div>
-      <div class="picnic-item">Fruit / grapes</div>
-      <div class="picnic-item">Drinks &amp; water</div>
-      <div class="picnic-item">Napkins &amp; cups</div>
-      <div class="picnic-item">Wet wipes</div>
+
+    <div id="band-bfs" class="band-content visible">
+      <div class="band-header">
+        <div class="band-name">Bowling for Soup</div>
+        <div class="band-desc">Pop punk legends from Texas. Expect every one of these live — they rarely drop the bangers.</div>
+      </div>
+      <div class="track-list">
+        <div class="track-item"><div class="track-num">1</div><div class="track-info"><div class="track-title">Girl All the Bad Guys Want</div><div class="track-album">Drunk Enough to Dance</div></div><div class="track-links"><a class="stream-btn btn-apple" href="https://music.apple.com/gb/album/girl-all-the-bad-guys-want/1440838689?i=1440839116" target="_blank">🎵</a><a class="stream-btn btn-spotify" href="https://open.spotify.com/track/5Y3TdrMoUDuB7RmLKJJuHT" target="_blank">💚</a></div></div>
+        <div class="track-item"><div class="track-num">2</div><div class="track-info"><div class="track-title">1985</div><div class="track-album">A Hangover You Don't Deserve</div></div><div class="track-links"><a class="stream-btn btn-apple" href="https://music.apple.com/gb/album/1985/1440842957?i=1440843240" target="_blank">🎵</a><a class="stream-btn btn-spotify" href="https://open.spotify.com/track/5aAx2yezTd8zXrkmtKl66Z" target="_blank">💚</a></div></div>
+        <div class="track-item"><div class="track-num">3</div><div class="track-info"><div class="track-title">High School Never Ends</div><div class="track-album">The Great Burrito Extortion Case</div></div><div class="track-links"><a class="stream-btn btn-apple" href="https://music.apple.com/gb/album/high-school-never-ends/1440844041?i=1440844281" target="_blank">🎵</a><a class="stream-btn btn-spotify" href="https://open.spotify.com/track/0BFMcCRFBUVVJJRXjnHrjR" target="_blank">💚</a></div></div>
+        <div class="track-item"><div class="track-num">4</div><div class="track-info"><div class="track-title">Almost</div><div class="track-album">A Hangover You Don't Deserve</div></div><div class="track-links"><a class="stream-btn btn-apple" href="https://music.apple.com/gb/album/almost/1440842957?i=1440843234" target="_blank">🎵</a><a class="stream-btn btn-spotify" href="https://open.spotify.com/track/1kpNXqTCIqHXzYZt6AKdXC" target="_blank">💚</a></div></div>
+        <div class="track-item"><div class="track-num">5</div><div class="track-info"><div class="track-title">Ohio (Come Back to Texas)</div><div class="track-album">A Hangover You Don't Deserve</div></div><div class="track-links"><a class="stream-btn btn-apple" href="https://music.apple.com/gb/album/ohio-come-back-to-texas/1440842957?i=1440843241" target="_blank">🎵</a><a class="stream-btn btn-spotify" href="https://open.spotify.com/track/7LiRBJPakGbN6P0VFhQaph" target="_blank">💚</a></div></div>
+        <div class="track-item"><div class="track-num">6</div><div class="track-info"><div class="track-title">Punk Rock 101</div><div class="track-album">Drunk Enough to Dance</div></div><div class="track-links"><a class="stream-btn btn-apple" href="https://music.apple.com/gb/album/punk-rock-101/1440838689?i=1440839119" target="_blank">🎵</a><a class="stream-btn btn-spotify" href="https://open.spotify.com/track/3hMpPSEGDqDNQbvAXdmFVH" target="_blank">💚</a></div></div>
+        <div class="track-item"><div class="track-num">7</div><div class="track-info"><div class="track-title">Turbulence</div><div class="track-album">Fishin' for Woos</div></div><div class="track-links"><a class="stream-btn btn-apple" href="https://music.apple.com/gb/album/turbulence/1440846773?i=1440847071" target="_blank">🎵</a><a class="stream-btn btn-spotify" href="https://open.spotify.com/track/4u7EnebtmKWzUH433cf5Qv" target="_blank">💚</a></div></div>
+        <div class="track-item"><div class="track-num">8</div><div class="track-info"><div class="track-title">Today Is Gonna Be a Great Day</div><div class="track-album">Phineas &amp; Ferb Theme</div></div><div class="track-links"><a class="stream-btn btn-apple" href="https://music.apple.com/gb/album/today-is-gonna-be-a-great-day/1440847985?i=1440848212" target="_blank">🎵</a><a class="stream-btn btn-spotify" href="https://open.spotify.com/track/0bAJLPmMkOUFJnCCXjJXFt" target="_blank">💚</a></div></div>
+      </div>
+      <div class="stream-all">
+        <a class="stream-all-btn sab-apple" href="https://music.apple.com/gb/artist/bowling-for-soup/471528" target="_blank">🎵 Apple Music</a>
+        <a class="stream-all-btn sab-spotify" href="https://open.spotify.com/artist/4wLXwxDeWQ8mtUIRPxGiD6" target="_blank">💚 Spotify</a>
+      </div>
+    </div>
+
+    <div id="band-ft" class="band-content">
+      <div class="band-header">
+        <div class="band-name">Frank Turner</div>
+        <div class="band-desc">Folk-punk storyteller — 3,000+ shows. Photosynthesis and Love Ire &amp; Song almost always close the set.</div>
+      </div>
+      <div class="track-list">
+        <div class="track-item"><div class="track-num">1</div><div class="track-info"><div class="track-title">Recovery</div><div class="track-album">Tape Deck Heart</div></div><div class="track-links"><a class="stream-btn btn-apple" href="https://music.apple.com/gb/album/recovery/621912753?i=621912979" target="_blank">🎵</a><a class="stream-btn btn-spotify" href="https://open.spotify.com/track/7vaq2CPi1tMnYVq05h0Dxs" target="_blank">💚</a></div></div>
+        <div class="track-item"><div class="track-num">2</div><div class="track-info"><div class="track-title">Photosynthesis</div><div class="track-album">Poetry of the Deed</div></div><div class="track-links"><a class="stream-btn btn-apple" href="https://music.apple.com/gb/album/photosynthesis/329536785?i=329536958" target="_blank">🎵</a><a class="stream-btn btn-spotify" href="https://open.spotify.com/track/0p3KwGKDPpIgHkNmkjwVgh" target="_blank">💚</a></div></div>
+        <div class="track-item"><div class="track-num">3</div><div class="track-info"><div class="track-title">Love Ire &amp; Song</div><div class="track-album">Love Ire &amp; Song</div></div><div class="track-links"><a class="stream-btn btn-apple" href="https://music.apple.com/gb/album/love-ire-song/329534144?i=329534348" target="_blank">🎵</a><a class="stream-btn btn-spotify" href="https://open.spotify.com/track/4a2dGmKAuFKUiLAqTFiN9k" target="_blank">💚</a></div></div>
+        <div class="track-item"><div class="track-num">4</div><div class="track-info"><div class="track-title">Undefeated</div><div class="track-album">Undefeated</div></div><div class="track-links"><a class="stream-btn btn-apple" href="https://music.apple.com/gb/album/undefeated/1742376988?i=1742376989" target="_blank">🎵</a><a class="stream-btn btn-spotify" href="https://open.spotify.com/track/6X6pSEt2F7aXRgHOknVHFZ" target="_blank">💚</a></div></div>
+        <div class="track-item"><div class="track-num">5</div><div class="track-info"><div class="track-title">Subculture</div><div class="track-album">Tape Deck Heart</div></div><div class="track-links"><a class="stream-btn btn-apple" href="https://music.apple.com/gb/album/subculture/621912753?i=621912977" target="_blank">🎵</a><a class="stream-btn btn-spotify" href="https://open.spotify.com/track/1KbGSJxjHh7kLPOK7YvDZ5" target="_blank">💚</a></div></div>
+        <div class="track-item"><div class="track-num">6</div><div class="track-info"><div class="track-title">The Gathering</div><div class="track-album">FTHC</div></div><div class="track-links"><a class="stream-btn btn-apple" href="https://music.apple.com/gb/album/the-gathering/1594902761?i=1594902762" target="_blank">🎵</a><a class="stream-btn btn-spotify" href="https://open.spotify.com/track/2nBNHQMVxRKGJfTtqC0X3s" target="_blank">💚</a></div></div>
+        <div class="track-item"><div class="track-num">7</div><div class="track-info"><div class="track-title">Wessex Boy</div><div class="track-album">England Keep My Bones</div></div><div class="track-links"><a class="stream-btn btn-apple" href="https://music.apple.com/gb/album/wessex-boy/438055775?i=438055888" target="_blank">🎵</a><a class="stream-btn btn-spotify" href="https://open.spotify.com/track/2nGcHOXQGYUCMRJDcEkMVk" target="_blank">💚</a></div></div>
+        <div class="track-item"><div class="track-num">8</div><div class="track-info"><div class="track-title">Cashier in the Supermarket of Love</div><div class="track-album">Undefeated</div></div><div class="track-links"><a class="stream-btn btn-apple" href="https://music.apple.com/gb/album/cashier-in-the-supermarket-of-love/1742376988?i=1742377000" target="_blank">🎵</a><a class="stream-btn btn-spotify" href="https://open.spotify.com/track/3HKYnmLGvSTYfHiqFULqQ4" target="_blank">💚</a></div></div>
+      </div>
+      <div class="stream-all">
+        <a class="stream-all-btn sab-apple" href="https://music.apple.com/gb/artist/frank-turner/271463476" target="_blank">🎵 Apple Music</a>
+        <a class="stream-all-btn sab-spotify" href="https://open.spotify.com/artist/1nmfYnYXLhKBvFrKTOOGaA" target="_blank">💚 Spotify</a>
+      </div>
+    </div>
+
+    <div id="band-ahf" class="band-content">
+      <div class="band-header">
+        <div class="band-name">American Hi-Fi</div>
+        <div class="band-desc">Flavor of the Weak is a guaranteed closer. Another Perfect Day and Scar are live staples too.</div>
+      </div>
+      <div class="track-list">
+        <div class="track-item"><div class="track-num">1</div><div class="track-info"><div class="track-title">Flavor of the Weak</div><div class="track-album">American Hi-Fi</div></div><div class="track-links"><a class="stream-btn btn-apple" href="https://music.apple.com/gb/album/flavor-of-the-weak/1440874870?i=1440875094" target="_blank">🎵</a><a class="stream-btn btn-spotify" href="https://open.spotify.com/track/4uHZLHZCiYOzRuIBpnUtnH" target="_blank">💚</a></div></div>
+        <div class="track-item"><div class="track-num">2</div><div class="track-info"><div class="track-title">Another Perfect Day</div><div class="track-album">The Art of Losing</div></div><div class="track-links"><a class="stream-btn btn-apple" href="https://music.apple.com/gb/album/another-perfect-day/1440875524?i=1440875766" target="_blank">🎵</a><a class="stream-btn btn-spotify" href="https://open.spotify.com/track/3dBVyJ3N0iFpFABBEEkNbr" target="_blank">💚</a></div></div>
+        <div class="track-item"><div class="track-num">3</div><div class="track-info"><div class="track-title">Scar</div><div class="track-album">American Hi-Fi</div></div><div class="track-links"><a class="stream-btn btn-apple" href="https://music.apple.com/gb/album/scar/1440874870?i=1440875098" target="_blank">🎵</a><a class="stream-btn btn-spotify" href="https://open.spotify.com/track/2xnPMuQ5mhYS7zHjfBJYaH" target="_blank">💚</a></div></div>
+        <div class="track-item"><div class="track-num">4</div><div class="track-info"><div class="track-title">The Art of Losing</div><div class="track-album">The Art of Losing</div></div><div class="track-links"><a class="stream-btn btn-apple" href="https://music.apple.com/gb/album/the-art-of-losing/1440875524?i=1440875760" target="_blank">🎵</a><a class="stream-btn btn-spotify" href="https://open.spotify.com/track/5mEMPt3TFJAM0KqoiNnhXP" target="_blank">💚</a></div></div>
+        <div class="track-item"><div class="track-num">5</div><div class="track-info"><div class="track-title">Hi-Fi Killer</div><div class="track-album">American Hi-Fi</div></div><div class="track-links"><a class="stream-btn btn-apple" href="https://music.apple.com/gb/album/hi-fi-killer/1440874870?i=1440875089" target="_blank">🎵</a><a class="stream-btn btn-spotify" href="https://open.spotify.com/track/6fyLnPRKuPkI7xBiqRkZxi" target="_blank">💚</a></div></div>
+        <div class="track-item"><div class="track-num">6</div><div class="track-info"><div class="track-title">The Breakup Song</div><div class="track-album">The Art of Losing</div></div><div class="track-links"><a class="stream-btn btn-apple" href="https://music.apple.com/gb/album/the-breakup-song/1440875524?i=1440875763" target="_blank">🎵</a><a class="stream-btn btn-spotify" href="https://open.spotify.com/track/0GZyGCyFKbWxQdJrA77wBs" target="_blank">💚</a></div></div>
+        <div class="track-item"><div class="track-num">7</div><div class="track-info"><div class="track-title">The Geeks Get the Girls</div><div class="track-album">Hearts on the Ground</div></div><div class="track-links"><a class="stream-btn btn-apple" href="https://music.apple.com/gb/album/hearts-on-the-ground/1440876214" target="_blank">🎵</a><a class="stream-btn btn-spotify" href="https://open.spotify.com/track/1EB7HjAQ4DK8FLczYEV3VH" target="_blank">💚</a></div></div>
+        <div class="track-item"><div class="track-num">8</div><div class="track-info"><div class="track-title">I'm a Fool</div><div class="track-album">American Hi-Fi</div></div><div class="track-links"><a class="stream-btn btn-apple" href="https://music.apple.com/gb/album/american-hi-fi/1440874870" target="_blank">🎵</a><a class="stream-btn btn-spotify" href="https://open.spotify.com/artist/3bkMOhXRcVOFXMdHW8nEEN" target="_blank">💚</a></div></div>
+      </div>
+      <div class="stream-all">
+        <a class="stream-all-btn sab-apple" href="https://music.apple.com/gb/artist/american-hi-fi/4218800" target="_blank">🎵 Apple Music</a>
+        <a class="stream-all-btn sab-spotify" href="https://open.spotify.com/artist/3bkMOhXRcVOFXMdHW8nEEN" target="_blank">💚 Spotify</a>
+      </div>
     </div>
   </div>
+  <div style="padding-bottom: 1.5rem;"></div>
 </div>
 
-<!-- VENUE INFO -->
-<div class="section">
-  <div class="section-heading">Venue</div>
-  <div class="info-card">
-    <div class="info-row">
-      <div class="info-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
-      <div><div class="info-label">Address</div><div class="info-value">Abbey Rd, Llangollen LL20 8SW</div></div>
+<!-- PAGE: VENUE -->
+<div id="page-venue" class="page">
+  <div class="section">
+    <div class="section-heading">Venue</div>
+    <div class="info-card">
+      <div class="info-row">
+        <div class="info-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <div><div class="info-label">Address</div><div class="info-value">Abbey Rd, Llangollen LL20 8SW</div></div>
+      </div>
+      <div class="info-row">
+        <div class="info-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+        <div><div class="info-label">Timings</div><div class="info-value">Gates 16:00 · Finish ~22:30</div></div>
+      </div>
+      <div class="info-row">
+        <div class="info-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg></div>
+        <div><div class="info-label">Payments</div><div class="info-value">Cashless only — card &amp; contactless</div></div>
+      </div>
+      <div class="info-row">
+        <div class="info-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <div><div class="info-label">Age restrictions</div><div class="info-value">Under 16s with adult · Under 5s free</div></div>
+      </div>
+      <div class="info-row">
+        <div class="info-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+        <div><div class="info-label">Indoors or out?</div><div class="info-value">Inside pavilion · food stalls outside</div></div>
+      </div>
     </div>
-    <div class="info-row">
-      <div class="info-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
-      <div><div class="info-label">Timings</div><div class="info-value">Gates 4:00 PM · Finish ~10:30 PM</div></div>
-    </div>
-    <div class="info-row">
-      <div class="info-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg></div>
-      <div><div class="info-label">Payments</div><div class="info-value">Cashless only — card &amp; contactless</div></div>
-    </div>
-    <div class="info-row">
-      <div class="info-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
-      <div><div class="info-label">Age restrictions</div><div class="info-value">Under 16s with adult · Under 5s free</div></div>
-    </div>
-    <div class="info-row">
-      <div class="info-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
-      <div><div class="info-label">Indoors or out?</div><div class="info-value">Inside pavilion · food stalls outside</div></div>
-    </div>
+    <a class="map-btn" href="https://maps.apple.com/?ll=52.9726,-3.1734&q=Llangollen+Car+Park&t=m" target="_blank" style="background: var(--card); color: var(--white); border: 1px solid var(--border);">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      Car Park in Maps
+    </a>
+    <a class="map-btn" href="parking.pdf" target="_blank" style="background: var(--card); color: var(--white); border: 1px solid var(--border);">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18M3 9h6M3 15h6"/></svg>
+      View Parking Ticket
+    </a>
+    <a class="map-btn" href="https://maps.apple.com/?address=Abbey+Rd,+Llangollen+LL20+8SW&t=m" target="_blank">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      Venue in Maps
+    </a>
   </div>
-  <a class="map-btn" href="https://maps.apple.com/?ll=52.9726,-3.1734&q=Llangollen+Car+Park&t=m" target="_blank" style="background: var(--card); color: var(--white); border: 1px solid var(--border); margin-bottom: 0.75rem;">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-    Car Park in Maps
-  </a>
-  <a class="map-btn" href="parking.pdf" target="_blank" style="background: var(--card); color: var(--white); border: 1px solid var(--border); margin-bottom: 0.75rem;">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18M3 9h6M3 15h6"/></svg>
-    View Parking Ticket
-  </a>
-  <a class="map-btn" href="https://maps.apple.com/?address=Abbey+Rd,+Llangollen+LL20+8SW&t=m" target="_blank">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-    Venue in Maps
-  </a>
+  <div style="padding-bottom: 1.5rem;"></div>
 </div>
 
-<!-- CHECKLIST -->
-<div class="section">
-  <div class="section-heading">To-do before you go</div>
-  <div class="checklist" id="checklist">
-    <div class="check-item" onclick="toggleCheck(this)">
-      <div class="check-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
-      <div class="check-text">Check set times (announced ~1–2 weeks before)</div>
-    </div>
-    <div class="check-item" onclick="toggleCheck(this)">
-      <div class="check-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
-      <div class="check-text">Send Lara the plan &amp; confirm timings</div>
-    </div>
-    <div class="check-item" onclick="toggleCheck(this)">
-      <div class="check-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
-      <div class="check-text">Sort the picnic supplies</div>
-    </div>
-    <div class="check-item" onclick="toggleCheck(this)">
-      <div class="check-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
-      <div class="check-text">Sort a bed / room for Lara</div>
-    </div>
-    <div class="check-item" onclick="toggleCheck(this)">
-      <div class="check-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
-      <div class="check-text">Check A5 for roadworks nearer the date</div>
-    </div>
-    <div class="check-item" onclick="toggleCheck(this)">
-      <div class="check-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
-      <div class="check-text">Confirm everyone has tickets</div>
-    </div>
-    <div class="check-item" onclick="toggleCheck(this)">
-      <div class="check-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
-      <div class="check-text">Check weather forecast the day before</div>
-    </div>
-    <div class="check-item" onclick="toggleCheck(this)">
-      <div class="check-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
-      <div class="check-text">Remember card — venue is cashless</div>
+<!-- PAGE: TO-DO -->
+<div id="page-todo" class="page">
+  <div class="section">
+    <div class="section-heading">To-do before you go</div>
+    <div class="checklist" id="checklist">
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div><div class="check-text">Check set times (announced ~1–2 weeks before)</div></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div><div class="check-text">Send Lara the plan &amp; confirm timings</div></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div><div class="check-text">Sort the picnic supplies</div></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div><div class="check-text">Sort a bed / room for Lara</div></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div><div class="check-text">Check A5 for roadworks nearer the date</div></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div><div class="check-text">Confirm everyone has tickets</div></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div><div class="check-text">Check weather forecast the day before</div></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div><div class="check-text">Remember card — venue is cashless</div></div>
     </div>
   </div>
+  <div style="padding-bottom: 1.5rem;"></div>
 </div>
 
 <div class="footer">
   <p>Friday 3 July 2026 · Llangollen, North Wales</p>
-  <div class="artists">Bowling for Soup · Frank Turner &amp; The Sleeping Souls</div>
+  <div class="artists">Bowling for Soup · Frank Turner · American Hi-Fi</div>
 </div>
 
 <script>
@@ -501,48 +553,46 @@
     var target = new Date('2026-07-03T16:00:00');
     var now = new Date();
     var diff = target - now;
-    if (diff <= 0) {
-      ['days','hours','mins','secs'].forEach(function(u) { document.getElementById('cd-'+u).textContent = '00'; });
-      return;
-    }
-    var days  = Math.floor(diff / 86400000);
-    var hours = Math.floor((diff % 86400000) / 3600000);
-    var mins  = Math.floor((diff % 3600000) / 60000);
-    var secs  = Math.floor((diff % 60000) / 1000);
-    document.getElementById('cd-days').textContent  = String(days).padStart(2,'0');
-    document.getElementById('cd-hours').textContent = String(hours).padStart(2,'0');
-    document.getElementById('cd-mins').textContent  = String(mins).padStart(2,'0');
-    document.getElementById('cd-secs').textContent  = String(secs).padStart(2,'0');
+    if (diff <= 0) { ['days','hours','mins','secs'].forEach(function(u){document.getElementById('cd-'+u).textContent='00';}); return; }
+    document.getElementById('cd-days').textContent  = String(Math.floor(diff/86400000)).padStart(2,'0');
+    document.getElementById('cd-hours').textContent = String(Math.floor((diff%86400000)/3600000)).padStart(2,'0');
+    document.getElementById('cd-mins').textContent  = String(Math.floor((diff%3600000)/60000)).padStart(2,'0');
+    document.getElementById('cd-secs').textContent  = String(Math.floor((diff%60000)/1000)).padStart(2,'0');
   }
   updateCountdown();
   setInterval(updateCountdown, 1000);
 
+  function showPage(id) {
+    document.querySelectorAll('.page').forEach(function(p){ p.classList.remove('visible'); });
+    document.getElementById('page-'+id).classList.add('visible');
+    document.querySelectorAll('.nav-btn').forEach(function(b,i){
+      var ids = ['plan','picnic','playlist','venue','todo'];
+      b.classList.toggle('active', ids[i] === id);
+    });
+    window.scrollTo(0, document.querySelector('.top-nav').offsetTop - 1);
+  }
+
   function showDirection(dir) {
     document.getElementById('timeline-out').classList.toggle('hidden', dir !== 'out');
     document.getElementById('timeline-back').classList.toggle('hidden', dir !== 'back');
-    document.querySelectorAll('.dir-btn').forEach(function(b, i) {
-      b.classList.toggle('active', (i === 0 && dir === 'out') || (i === 1 && dir === 'back'));
-    });
+    document.querySelectorAll('.dir-btn').forEach(function(b,i){ b.classList.toggle('active', (i===0&&dir==='out')||(i===1&&dir==='back')); });
   }
 
-  function toggleCheck(el) {
-    el.classList.toggle('done');
-    saveChecks();
+  function showBand(band) {
+    ['bfs','ft','ahf'].forEach(function(b){ document.getElementById('band-'+b).classList.toggle('visible', b===band); });
+    document.querySelectorAll('.band-tab').forEach(function(t,i){ t.classList.toggle('active', ['bfs','ft','ahf'][i]===band); });
   }
 
+  function toggleCheck(el) { el.classList.toggle('done'); saveChecks(); }
   function saveChecks() {
-    var states = Array.from(document.querySelectorAll('.check-item')).map(function(i) { return i.classList.contains('done'); });
+    var states = Array.from(document.querySelectorAll('.check-item')).map(function(i){return i.classList.contains('done');});
     try { localStorage.setItem('bmb-checks', JSON.stringify(states)); } catch(e) {}
   }
-
   function loadChecks() {
     try {
       var saved = localStorage.getItem('bmb-checks');
       if (!saved) return;
-      JSON.parse(saved).forEach(function(done, i) {
-        var items = document.querySelectorAll('.check-item');
-        if (done && items[i]) items[i].classList.add('done');
-      });
+      JSON.parse(saved).forEach(function(done,i){ var items=document.querySelectorAll('.check-item'); if(done&&items[i]) items[i].classList.add('done'); });
     } catch(e) {}
   }
   loadChecks();
